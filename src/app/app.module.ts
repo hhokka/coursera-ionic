@@ -10,14 +10,17 @@ import { ContactPage } from "../pages/contact/contact";
 
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
-import { DishProvider } from '../providers/dish/dish';
-import { LeaderProvider } from '../providers/leader/leader';
-import { PromotionProvider } from '../providers/promotion/promotion';
-import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
+import { DishProvider } from "../providers/dish/dish";
+import { LeaderProvider } from "../providers/leader/leader";
+import { PromotionProvider } from "../providers/promotion/promotion";
+import { ProcessHttpmsgProvider } from "../providers/process-httpmsg/process-httpmsg";
+
+import { HttpModule } from "@angular/http";
+import { baseURL } from "../shared/baseurl";
 
 @NgModule({
   declarations: [MyApp, HomePage, AboutPage, MenuPage, ContactPage],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpModule],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage, AboutPage, MenuPage, ContactPage],
   providers: [
@@ -28,6 +31,7 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     LeaderProvider,
     PromotionProvider,
     ProcessHttpmsgProvider,
+    { provide: "BaseURL", useValue: baseURL },
   ],
 })
 export class AppModule {}
