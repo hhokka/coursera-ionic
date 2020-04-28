@@ -34,15 +34,18 @@
     <ion-row> </ion-row>
   </ion-card>
 
-  <ion-list *ngIf="dish">
+  <ion-list *ngIf="leaders">
     <ion-list-header>
-      Comments
+      Leaders
     </ion-list-header>
-    <ion-item *ngFor="let comment of dish.comments" text-wrap>
-      <h4>{{comment.comment}}</h4>
-      <p>{{comment.rating}} Stars</p>
+    <ion-item *ngFor="let leader of leaders" text-wrap>
+      <ion-avatar item-start>
+        <img src="{{BaseURL + leader.image}}" />
+      </ion-avatar>
+      <h4>{{leader.name}}</h4>
+      <p color="black">{{leader.designation}}</p>
       <p>
-        <span> -- {{comment.author}} {{comment.date | date }} </span>
+        <span>{{leader.description}}</span>
       </p>
     </ion-item>
   </ion-list>
