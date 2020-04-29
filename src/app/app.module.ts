@@ -8,6 +8,7 @@ import { AboutPage } from "../pages/about/about";
 import { MenuPage } from "../pages/menu/menu";
 import { ContactPage } from "../pages/contact/contact";
 import { DishdetailPage } from "../pages/dishdetail/dishdetail";
+import { FavoritesPage } from "../pages/favorites/favorites";
 
 import { StatusBar } from "@ionic-native/status-bar";
 import { SplashScreen } from "@ionic-native/splash-screen";
@@ -19,6 +20,7 @@ import { ProcessHttpmsgProvider } from "../providers/process-httpmsg/process-htt
 import { HttpModule } from "@angular/http";
 import { baseURL } from "../shared/baseurl";
 import { from } from "rxjs/observable/from";
+import { FavoriteProvider } from "../providers/favorite/favorite";
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { from } from "rxjs/observable/from";
     MenuPage,
     ContactPage,
     DishdetailPage,
+    FavoritesPage,
   ],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), HttpModule],
   bootstrap: [IonicApp],
@@ -38,6 +41,7 @@ import { from } from "rxjs/observable/from";
     MenuPage,
     ContactPage,
     DishdetailPage,
+    FavoritesPage,
   ],
   providers: [
     StatusBar,
@@ -48,6 +52,7 @@ import { from } from "rxjs/observable/from";
     PromotionProvider,
     ProcessHttpmsgProvider,
     { provide: "BaseURL", useValue: baseURL },
+    FavoriteProvider,
   ],
 })
 export class AppModule {}
