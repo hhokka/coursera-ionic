@@ -4,6 +4,7 @@ import {
   NavController,
   NavParams,
   ItemSliding,
+  ToastController,
 } from "ionic-angular";
 import { FavoriteProvider } from "../../providers/favorite/favorite";
 import { Dish } from "../../shared/dish";
@@ -27,7 +28,8 @@ export class FavoritesPage implements OnInit {
     public navCtrl: NavController,
     public navParams: NavParams,
     private favoriteservice: FavoriteProvider,
-    @Inject("BaseURL") private BaseURL
+    @Inject("BaseURL") private BaseURL,
+    public toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
@@ -47,6 +49,12 @@ export class FavoritesPage implements OnInit {
       (favorites) => (this.favorites = favorites),
       (errmess) => (this.errMess = errmess)
     );
+    this.toastCtrl
+      .create({
+        message: "Dish " + id + " deleted successfully",
+        duration: 3000,
+      })
+      .present();
     item.close();
   }
 }
