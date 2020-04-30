@@ -4,6 +4,7 @@ import {
   NavController,
   NavParams,
   ToastController,
+  ActionSheetController,
 } from "ionic-angular";
 import { Dish } from "../../shared/dish";
 import { Comment } from "../../shared/comment";
@@ -31,7 +32,8 @@ export class DishdetailPage {
     public navParams: NavParams,
     @Inject("BaseURL") private BaseURL,
     private favoriteservice: FavoriteProvider,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public actionSheetCtrl: ActionSheetController
   ) {
     this.dish = navParams.get("dish");
     this.favorite = favoriteservice.isFavorite(this.dish.id);
@@ -51,7 +53,41 @@ export class DishdetailPage {
       })
       .present();
   }
+  addComment() {
+    console.log("addComment triggered");
+  }
   ionViewDidLoad() {
     console.log("ionViewDidLoad DishdetailPage");
+  }
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: "Select Actions",
+      buttons: [
+        {
+          text: "Add to Favorites",
+          role: "add",
+          handler: () => {
+            this.addToFavorites();
+            console.log("Add to Favorites clicked");
+          },
+        },
+        {
+          text: "AddComment",
+          role: "add",
+          handler: () => {
+            this.addComment();
+            console.log("Add Comment clicked");
+          },
+        },
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          },
+        },
+      ],
+    });
+    actionSheet.present();
   }
 }
