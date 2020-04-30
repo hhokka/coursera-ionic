@@ -9,6 +9,8 @@ import {
 import { Dish } from "../../shared/dish";
 import { Comment } from "../../shared/comment";
 import { FavoriteProvider } from "../../providers/favorite/favorite";
+import { CommentPage } from "../../pages/comment/comment";
+import { Nav, Platform, ModalController } from "ionic-angular";
 /**
  * Generated class for the DishdetailPage page.
  *
@@ -33,7 +35,8 @@ export class DishdetailPage {
     @Inject("BaseURL") private BaseURL,
     private favoriteservice: FavoriteProvider,
     private toastCtrl: ToastController,
-    public actionSheetCtrl: ActionSheetController
+    public actionSheetCtrl: ActionSheetController,
+    public modalCtrl: ModalController
   ) {
     this.dish = navParams.get("dish");
     this.favorite = favoriteservice.isFavorite(this.dish.id);
@@ -55,6 +58,11 @@ export class DishdetailPage {
   }
   addComment() {
     console.log("addComment triggered");
+    this.openCommentModal();
+  }
+  openCommentModal() {
+    let modal = this.modalCtrl.create(CommentPage);
+    modal.present();
   }
   ionViewDidLoad() {
     console.log("ionViewDidLoad DishdetailPage");
@@ -72,7 +80,7 @@ export class DishdetailPage {
           },
         },
         {
-          text: "AddComment",
+          text: "Add Comment",
           role: "add",
           handler: () => {
             this.addComment();
