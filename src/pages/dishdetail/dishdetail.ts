@@ -28,7 +28,8 @@ export class DishdetailPage {
   errMess: string;
   avgstars: string;
   numcomments: number;
-
+  comment: Comment;
+  value: Comment;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -58,15 +59,20 @@ export class DishdetailPage {
   }
   addComment() {
     console.log("addComment triggered");
+
     this.openCommentModal();
   }
   openCommentModal() {
     let modal = this.modalCtrl.create(CommentPage);
     modal.present();
+    modal.onDidDismiss((value) =>
+      value ? this.dish.comments.push(value) : null
+    );
   }
   ionViewDidLoad() {
     console.log("ionViewDidLoad DishdetailPage");
   }
+
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       title: "Select Actions",

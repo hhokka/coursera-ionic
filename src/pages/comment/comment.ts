@@ -23,8 +23,8 @@ export class CommentPage {
     private formBuilder: FormBuilder
   ) {
     this.commentEntry = this.formBuilder.group({
-      rating: 3,
-      author: false,
+      rating: 1,
+      author: ["", Validators.required],
       comment: ["", Validators.required],
     });
   }
@@ -33,7 +33,7 @@ export class CommentPage {
   }
   onSubmit() {
     console.log(this.commentEntry.value);
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(this.commentEntry.value);
   }
 
   dismiss() {
