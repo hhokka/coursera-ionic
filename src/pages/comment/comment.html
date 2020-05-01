@@ -22,11 +22,19 @@
       <ion-label position="floating">Your Name</ion-label>
       <ion-input formControlName="author"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Your Rating</ion-label>
-      <ion-range min="1" max="5" step="1" snaps="true">
-        <ion-icon size="small" slot="start" name="sad"></ion-icon>
-        <ion-icon slot="end" name="happy"></ion-icon>
+      <ion-range
+        min="1"
+        max="5"
+        steps="1"
+        pin="true"
+        snaps="true"
+        formControlName="rating"
+      >
+        <ion-icon range-left size="small" name="sad"></ion-icon>
+        <ion-icon range-right name="happy"></ion-icon>
       </ion-range>
     </ion-item>
 
