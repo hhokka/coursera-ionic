@@ -5,6 +5,7 @@ import { Dish } from "../../shared/dish";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import { DishProvider } from "../dish/dish";
+import { Storage } from "@ionic/storage";
 
 /*/
   Generated class for the FavoriteProvider provider.
